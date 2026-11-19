@@ -25,23 +25,30 @@
   </div>
 
   <a-scene id="scene" embedded vr-mode-ui="enabled: true" xr-mode-ui="enabled: true">
-    <a-assets>
-      <a-mixin id="frame" geometry="primitive: plane; width: 3.2; height: 2.1" material="shader: flat" position="0 2.4 -5"></a-mixin>
-    </a-assets>
-
-    <a-sky color="#17171b"></a-sky>
+    <a-sky color="#111114"></a-sky>
     <a-entity light="type: ambient; intensity: 0.75"></a-entity>
     <a-entity light="type: directional; intensity: 1.2" position="0 4 2"></a-entity>
 
-    <a-box position="0 -0.05 -5" depth="12" height="0.1" width="18" material="color: #29292d; roughness: 0.9"></a-box>
-    <a-plane position="0 4.8 -5" rotation="90 0 0" width="18" height="12" material="color: #111114"></a-plane>
+    <a-circle position="0 0 0" rotation="-90 0 0" radius="12"
+      material="color: #29292d; roughness: 0.9"></a-circle>
+    <a-cylinder id="bin-wall" position="0 3.5 0" radius="12" height="7"
+      open-ended="true" segments-radial="64"
+      material="color: #34343a; side: double; roughness: 0.9"></a-cylinder>
+    <a-cone position="0 7.3 0" radius-bottom="12" radius-top="0.3" height="2.6"
+      segments-radial="64" material="color: #232329; side: double; roughness: 0.9"></a-cone>
 
-    <a-entity id="gallery-left"></a-entity>
-    <a-entity id="gallery-right"></a-entity>
-
-    <a-camera position="0 1.6 2">
-      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .artwork"></a-entity>
-    </a-camera>
+    <a-entity id="gallery-ring"></a-entity>
+    <a-entity id="player" quest-locomotion>
+      <a-camera id="player-camera" position="0 1.6 0">
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects: .artwork; far: 20"></a-entity>
+      </a-camera>
+      <a-entity id="left-controller" laser-controls="hand: left"
+        cursor="rayOrigin: entity; fuse: false"
+        raycaster="objects: .artwork; far: 20" line="color: #d7b6ff; opacity: 0.8"></a-entity>
+      <a-entity id="right-controller" laser-controls="hand: right"
+        cursor="rayOrigin: entity; fuse: false"
+        raycaster="objects: .artwork; far: 20" line="color: #d7b6ff; opacity: 0.8"></a-entity>
+    </a-entity>
   </a-scene>
 
   <script src="app.js"></script>
