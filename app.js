@@ -87,8 +87,8 @@ AFRAME.registerComponent('quest-locomotion', {
     const travel = this.data.speed * (delta / 1000);
 
     if (leftAxes) {
-      const strafe = -leftAxes[0];
-      const forwardAmount = -leftAxes[1];
+      const strafe = leftAxes[0];
+      const forwardAmount = leftAxes[1];
       if (Math.abs(strafe) >= this.data.deadzone || Math.abs(forwardAmount) >= this.data.deadzone) {
         const camera = this.el.querySelector('a-camera');
         const forward = camera.object3D.getWorldDirection(new THREE.Vector3());
@@ -107,9 +107,9 @@ AFRAME.registerComponent('quest-locomotion', {
     }
 
     if (rightAxes) {
-      const turnAmount = -rightAxes[0];
+      const turnAmount = rightAxes[0];
       if (Math.abs(turnAmount) >= this.data.deadzone) {
-        this.el.object3D.rotation.y -= turnAmount * this.data.turnSpeed * (delta / 1000);
+        this.el.object3D.rotation.y += turnAmount * this.data.turnSpeed * (delta / 1000);
       }
     }
   }
