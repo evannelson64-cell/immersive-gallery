@@ -1,12 +1,68 @@
 const works = [
-  { title: 'Paris, France', type: 'photo', src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Kyoto, Japan', type: 'photo', src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Venice, Italy', type: 'photo', src: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Santorini, Greece', type: 'photo', src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Marrakech, Morocco', type: 'photo', src: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'New York, USA', type: 'photo', src: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Bali, Indonesia', type: 'photo', src: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Swiss Alps', type: 'photo', src: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1400&q=85' }
+  {
+    title: 'Diwali · India',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Flower_Decor_with_Diwali_Candles.jpg/1920px-Flower_Decor_with_Diwali_Candles.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Flower_Decor_with_Diwali_Candles.jpg',
+    credit: 'humdingor',
+    license: 'CC BY-SA 2.0'
+  },
+  {
+    title: 'Christmas Market · United Kingdom',
+    type: 'photo',
+    src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Christmas_Market_on_the_South_Bank_-_geograph.org.uk_-_1598983.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Christmas_Market_on_the_South_Bank_-_geograph.org.uk_-_1598983.jpg',
+    credit: 'Peter Trimming',
+    license: 'CC BY-SA 2.0'
+  },
+  {
+    title: 'Lunar New Year · United States',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Lunar_New_Year_Celebration_-_53582318400.jpg/1920px-Lunar_New_Year_Celebration_-_53582318400.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Lunar_New_Year_Celebration_-_53582318400.jpg',
+    credit: 'MDGovpics',
+    license: 'CC BY 2.0'
+  },
+  {
+    title: 'Hanukkah · Russia',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Rostov-on-Don%2C_Hanukkah_celebration%2C_Hanukkah_menorah%2C_Judaism_in_Russia.jpg/1920px-Rostov-on-Don%2C_Hanukkah_celebration%2C_Hanukkah_menorah%2C_Judaism_in_Russia.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Rostov-on-Don,_Hanukkah_celebration,_Hanukkah_menorah,_Judaism_in_Russia.jpg',
+    credit: 'Vyacheslav Argenberg',
+    license: 'CC BY 4.0'
+  },
+  {
+    title: 'Eid al-Fitr · Somalia',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Eid_al-Fitr_celebrations%2C_Somalia%3B_June_2019_%2802%29.jpg/1920px-Eid_al-Fitr_celebrations%2C_Somalia%3B_June_2019_%2802%29.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Eid_al-Fitr_celebrations,_Somalia;_June_2019_(02).jpg',
+    credit: 'AMISOM Public Information',
+    license: 'CC0'
+  },
+  {
+    title: 'Holi · India',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Holi_Festival_of_Colors.jpg/1920px-Holi_Festival_of_Colors.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Holi_Festival_of_Colors.jpg',
+    credit: 'Ramesh Lalwani',
+    license: 'CC BY 2.0'
+  },
+  {
+    title: 'Día de Muertos · Mexico',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Catrinas_and_Catrines.jpg/1920px-Catrinas_and_Catrines.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Catrinas_and_Catrines.jpg',
+    credit: 'Tomas Castelazo',
+    license: 'CC BY-SA 4.0'
+  },
+  {
+    title: 'Rio Carnival · Brazil',
+    type: 'photo',
+    src: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Samba_Parade_-_Rio%27s_Carnival_2008.jpg/1920px-Samba_Parade_-_Rio%27s_Carnival_2008.jpg',
+    source: 'https://commons.wikimedia.org/wiki/File:Samba_Parade_-_Rio%27s_Carnival_2008.jpg',
+    credit: 'Randal Sheppard',
+    license: 'CC BY-SA 2.0'
+  }
 ];
 
 AFRAME.registerComponent('quest-locomotion', {
@@ -25,8 +81,8 @@ AFRAME.registerComponent('quest-locomotion', {
     if (!leftSource) return;
 
     const axes = leftSource.gamepad.axes;
-    const stickX = -(axes.length >= 4 ? axes[2] : axes[0]);
-    const stickY = -(axes.length >= 4 ? axes[3] : axes[1]);
+    const stickX = axes.length >= 4 ? axes[2] : axes[0];
+    const stickY = axes.length >= 4 ? axes[3] : axes[1];
     if (Math.abs(stickX) < this.data.deadzone && Math.abs(stickY) < this.data.deadzone) return;
 
     const camera = this.el.querySelector('a-camera');
@@ -102,9 +158,25 @@ function openWork(work) {
   const content = document.querySelector('#modal-content');
   content.replaceChildren();
   if (work.type === 'photo') {
+    const imageFrame = document.createElement('div');
+    imageFrame.className = 'media-image';
     const img = document.createElement('img');
     img.src = work.src; img.alt = work.title;
-    content.appendChild(img);
+    imageFrame.appendChild(img);
+    content.appendChild(imageFrame);
+
+    if (work.source && work.credit && work.license) {
+      const attribution = document.createElement('p');
+      attribution.className = 'media-credit';
+      attribution.append('Photo: ');
+      const sourceLink = document.createElement('a');
+      sourceLink.href = work.source;
+      sourceLink.target = '_blank';
+      sourceLink.rel = 'noopener noreferrer';
+      sourceLink.textContent = `${work.credit} · ${work.license}`;
+      attribution.appendChild(sourceLink);
+      content.appendChild(attribution);
+    }
   } else {
     const embed = youtubeEmbed(work.src);
     if (embed) {
