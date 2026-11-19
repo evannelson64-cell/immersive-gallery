@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#09090b" />
+  <title>Immersive Gallery</title>
+  <meta name="description" content="A WebXR multimedia art gallery for photos and YouTube videos." />
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="landing">
+    <p class="eyebrow">WEBXR COLLECTION</p>
+    <h1>Immersive<br />Gallery</h1>
+    <p class="intro">Enter a spatial exhibition of photographs and films.</p>
+    <button id="enter">Enter gallery <span>↗</span></button>
+  </main>
+
+  <button id="close" aria-label="Exit gallery">×</button>
+
+  <div id="content-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button id="modal-close" aria-label="Close">×</button>
+    <div id="modal-content"></div>
+  </div>
+
+  <a-scene id="scene" embedded vr-mode-ui="enabled: true" xr-mode-ui="enabled: true">
+    <a-assets>
+      <a-mixin id="frame" geometry="primitive: plane; width: 3.2; height: 2.1" material="shader: flat" position="0 2.4 -5"></a-mixin>
+    </a-assets>
+
+    <a-sky color="#17171b"></a-sky>
+    <a-entity light="type: ambient; intensity: 0.75"></a-entity>
+    <a-entity light="type: directional; intensity: 1.2" position="0 4 2"></a-entity>
+
+    <a-box position="0 -0.05 -5" depth="12" height="0.1" width="18" material="color: #29292d; roughness: 0.9"></a-box>
+    <a-plane position="0 4.8 -5" rotation="90 0 0" width="18" height="12" material="color: #111114"></a-plane>
+
+    <a-entity id="gallery-left"></a-entity>
+    <a-entity id="gallery-right"></a-entity>
+
+    <a-camera position="0 1.6 2">
+      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .artwork"></a-entity>
+    </a-camera>
+  </a-scene>
+
+  <script src="app.js"></script>
+</body>
+</html>
