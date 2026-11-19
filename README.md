@@ -10,7 +10,7 @@ The headset provides 6DoF head tracking (look and physically move naturally). Us
 
 ## Add your own artwork
 
-Edit the `works` array in `app.js`. Each item can be:
+The gallery comes with stock travel photos from Unsplash featuring destinations around the world. Edit the `works` array in `app.js` to replace or add pieces. Each item can be:
 
 - A photo: `{ title: 'My photo', type: 'photo', src: 'https://...' }`
 - A YouTube video: `{ title: 'My film', type: 'youtube', src: 'https://www.youtube.com/watch?v=VIDEO_ID' }`

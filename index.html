@@ -25,17 +25,17 @@
   </div>
 
   <a-scene id="scene" embedded vr-mode-ui="enabled: true" xr-mode-ui="enabled: true">
-    <a-sky color="#111114"></a-sky>
-    <a-entity light="type: ambient; intensity: 0.75"></a-entity>
-    <a-entity light="type: directional; intensity: 1.2" position="0 4 2"></a-entity>
+    <a-sky color="#242329"></a-sky>
+    <a-entity light="type: ambient; intensity: 1.25"></a-entity>
+    <a-entity light="type: directional; intensity: 1.5" position="0 5 2"></a-entity>
 
     <a-circle position="0 0 0" rotation="-90 0 0" radius="12"
-      material="color: #29292d; roughness: 0.9"></a-circle>
+      material="color: #514d48; roughness: 0.9"></a-circle>
     <a-cylinder id="bin-wall" position="0 3.5 0" radius="12" height="7"
       open-ended="true" segments-radial="64"
-      material="color: #34343a; side: double; roughness: 0.9"></a-cylinder>
+      material="color: #625e57; side: double; roughness: 0.9"></a-cylinder>
     <a-cone position="0 7.3 0" radius-bottom="12" radius-top="0.3" height="2.6"
-      segments-radial="64" material="color: #232329; side: double; roughness: 0.9"></a-cone>
+      segments-radial="64" material="color: #514b43; side: double; roughness: 0.9"></a-cone>
 
     <a-entity id="gallery-ring"></a-entity>
     <a-entity id="player" quest-locomotion>

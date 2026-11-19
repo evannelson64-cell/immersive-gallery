@@ -1,12 +1,12 @@
 const works = [
-  { title: 'Desert Light', type: 'photo', src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Ocean Motion', type: 'youtube', src: 'https://www.youtube.com/watch?v=LXb3EKWsInQ' },
-  { title: 'Electric Blue', type: 'photo', src: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Form & Shadow', type: 'photo', src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Quiet Peaks', type: 'photo', src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Into the Blue', type: 'youtube', src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U' },
-  { title: 'Misty Morning', type: 'photo', src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1400&q=85' },
-  { title: 'Last Light', type: 'photo', src: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1400&q=85' }
+  { title: 'Paris, France', type: 'photo', src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Kyoto, Japan', type: 'photo', src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Venice, Italy', type: 'photo', src: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Santorini, Greece', type: 'photo', src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Marrakech, Morocco', type: 'photo', src: 'https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'New York, USA', type: 'photo', src: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Bali, Indonesia', type: 'photo', src: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=85' },
+  { title: 'Swiss Alps', type: 'photo', src: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1400&q=85' }
 ];
 
 AFRAME.registerComponent('quest-locomotion', {
@@ -25,8 +25,8 @@ AFRAME.registerComponent('quest-locomotion', {
     if (!leftSource) return;
 
     const axes = leftSource.gamepad.axes;
-    const stickX = axes.length >= 4 ? axes[2] : axes[0];
-    const stickY = axes.length >= 4 ? axes[3] : axes[1];
+    const stickX = -(axes.length >= 4 ? axes[2] : axes[0]);
+    const stickY = -(axes.length >= 4 ? axes[3] : axes[1]);
     if (Math.abs(stickX) < this.data.deadzone && Math.abs(stickY) < this.data.deadzone) return;
 
     const camera = this.el.querySelector('a-camera');
