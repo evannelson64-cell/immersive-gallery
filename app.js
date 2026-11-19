@@ -68,6 +68,7 @@ const works = [
 AFRAME.registerComponent('quest-locomotion', {
   schema: {
     speed: { type: 'number', default: 3 },
+    turnSpeed: { type: 'number', default: 1.8 },
     deadzone: { type: 'number', default: 0.15 }
   },
 
@@ -75,29 +76,41 @@ AFRAME.registerComponent('quest-locomotion', {
     const session = this.el.sceneEl.renderer.xr.getSession();
     if (!session || !delta) return;
 
-    const leftSource = Array.from(session.inputSources).find((source) =>
-      source.handedness === 'left' && source.gamepad
-    );
-    if (!leftSource) return;
-
-    const axes = leftSource.gamepad.axes;
-    const stickX = axes.length >= 4 ? axes[2] : axes[0];
-    const stickY = axes.length >= 4 ? axes[3] : axes[1];
-    if (Math.abs(stickX) < this.data.deadzone && Math.abs(stickY) < this.data.deadzone) return;
-
-    const camera = this.el.querySelector('a-camera');
-    const forward = camera.object3D.getWorldDirection(new THREE.Vector3());
-    forward.y = 0;
-    forward.normalize();
-    const right = new THREE.Vector3(-forward.z, 0, forward.x);
+    const sources = Array.from(session.inputSources);
+    const leftGamepad = sources.find((source) => source.handedness === 'left' && source.gamepad)?.gamepad;
+    const rightGamepad = sources.find((source) => source.handedness === 'right' && source.gamepad)?.gamepad;
+    const stickAxes = (gamepad) => gamepad?.axes.length >= 4
+      ? gamepad.axes.slice(2, 4)
+      : gamepad?.axes.slice(0, 2);
+    const leftAxes = stickAxes(leftGamepad);
+    const rightAxes = stickAxes(rightGamepad);
     const travel = this.data.speed * (delta / 1000);
 
-    const position = this.el.object3D.position;
-    const nextX = position.x + (right.x * stickX - forward.x * stickY) * travel;
-    const nextZ = position.z + (right.z * stickX - forward.z * stickY) * travel;
-    if (Math.hypot(nextX, nextZ) <= 9.5) {
-      position.x = nextX;
-      position.z = nextZ;
+    if (leftAxes) {
+      const strafe = -leftAxes[0];
+      const forwardAmount = -leftAxes[1];
+      if (Math.abs(strafe) >= this.data.deadzone || Math.abs(forwardAmount) >= this.data.deadzone) {
+        const camera = this.el.querySelector('a-camera');
+        const forward = camera.object3D.getWorldDirection(new THREE.Vector3());
+        forward.y = 0;
+        forward.normalize();
+        const right = new THREE.Vector3(-forward.z, 0, forward.x);
+
+        const position = this.el.object3D.position;
+        const nextX = position.x + (right.x * strafe + forward.x * forwardAmount) * travel;
+        const nextZ = position.z + (right.z * strafe + forward.z * forwardAmount) * travel;
+        if (Math.hypot(nextX, nextZ) <= 9.5) {
+          position.x = nextX;
+          position.z = nextZ;
+        }
+      }
+    }
+
+    if (rightAxes) {
+      const turnAmount = -rightAxes[0];
+      if (Math.abs(turnAmount) >= this.data.deadzone) {
+        this.el.object3D.rotation.y -= turnAmount * this.data.turnSpeed * (delta / 1000);
+      }
     }
   }
 });

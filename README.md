@@ -6,7 +6,7 @@ A responsive WebXR art-gallery experience using A-Frame, ready for GitHub Pages 
 
 Open the HTTPS GitHub Pages URL after deployment. On Meta Quest, launch the site in the Meta Quest Browser and tap **Enter gallery**, then the VR button. The gallery is arranged around the inside of a large, corrugated grain-bin-shaped room, featuring holiday celebrations and festivals from around the world. Both Quest controllers are shown; point at an artwork and use the controller trigger to open it.
 
-The headset provides 6DoF head tracking (look and physically move naturally). Use the **left controller's thumbstick** to walk around the gallery. Push up to move forward, down to move backward, left to move left, and right to move right. Movement follows the direction you're facing.
+The headset provides 6DoF head tracking (look and physically move naturally). Use the **left controller's thumbstick** to walk around the gallery. Push up to move forward, down to move backward, left to move left, and right to move right. Movement follows the direction you're facing. Use the **right controller's thumbstick left/right** to smoothly turn in place.
 
 ## Add your own artwork
 
